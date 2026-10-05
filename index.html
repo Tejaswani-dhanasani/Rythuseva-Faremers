@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Rythu Seva - Farmer Benefit Portal">
+    <title>Rythu Seva | Farmer Benefit Portal</title>
+    <link rel="stylesheet" href="rythu.css">
+</head>
+
+<body>
+
+<header class="header">
+    <div class="logo-section">
+        <div class="logo-icon">🌾</div>
+        <div>
+            <h1 id="siteName">Farmer Benefit Portal</h1>
+            <p id="siteSubtitle">Government schemes and farmer services</p>
+        </div>
+    </div>
+
+    <div class="search-box">
+        <input type="text" id="searchInput" placeholder="Search schemes..." oninput="searchSchemes()">
+        <button type="button" onclick="searchSchemes()" aria-label="Search">🔍</button>
+    </div>
+
+    <div class="header-actions">
+        <select id="languageSelect" onchange="changeLanguage()" aria-label="Language">
+            <option value="en">English</option>
+            <option value="te">తెలుగు</option>
+        </select>
+
+        <button class="login-button" onclick="loginUser()" id="loginButton">
+            🔐 Login
+        </button>
+    </div>
+</header>
+
+<div class="marquee">
+    <marquee id="farmerMessage">
+        🌾 Support the hands that feed us and protect the land that sustains us!
+    </marquee>
+</div>
+
+<section class="rythu-hero">
+    <div class="rythu-overlay">
+        <p class="hero-small-text" id="portalTitle">🌾 FARMER BENEFIT PORTAL</p>
+
+        <h1 id="rythuTitle">RYTHU SEVA</h1>
+
+        <h2 id="welcomeTitle">Welcome, Farmer!</h2>
+
+        <p id="rythuTagline">సేవే రైతు బలం • అభివృద్ధే రైతు లక్ష్యం</p>
+
+        <p class="hero-description" id="heroDescription">
+            Connecting farmers with government schemes, agricultural services and financial benefits.
+        </p>
+
+        <div class="hero-buttons">
+            <a href="#schemes" class="primary-button" id="exploreBtn">🌱 Explore Schemes</a>
+            <a href="#farmerDetails" class="secondary-button" id="farmerBtn">👨‍🌾 Farmer Details</a>
+            <a href="#farm-gallery" class="secondary-button" id="galleryBtn">📷 Explore Farm Gallery</a>
+        </div>
+    </div>
+</section>
+
+<section class="dashboard" aria-label="Farmer dashboard">
+    <div class="dashboard-card">
+        <div class="dashboard-icon green">🌱</div>
+        <div>
+            <p id="schemeTitle">My Schemes</p>
+            <h2>5</h2>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="dashboard-icon blue">💰</div>
+        <div>
+            <p id="paymentTitle">Benefits Received</p>
+            <h2>₹12,000</h2>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="dashboard-icon green">📝</div>
+        <div>
+            <p id="applicationTitle">Applications</p>
+            <h2>3</h2>
+        </div>
+    </div>
+
+    <div class="dashboard-card">
+        <div class="dashboard-icon blue">🏦</div>
+        <div>
+            <p id="bankTitle">Bank Account</p>
+            <h2>✓</h2>
+        </div>
+    </div>
+</section>
+
+<main class="main-container">
+
+    <section class="main-card" id="schemes">
+        <div class="section-title">
+            <div class="section-icon">🌱</div>
+            <div>
+                <h2 id="schemesHeading">Government Schemes</h2>
+                <p id="schemesDescription">Explore farmer benefits</p>
+            </div>
+        </div>
+
+        <div id="schemeList" class="scheme-list">
+            <button class="scheme-button" data-name-en="PM-KISAN" data-name-te="పీఎం-కిసాన్"
+                    onclick="showScheme('pmkisan', this)">
+                🌾 <span class="scheme-name">PM-KISAN</span>
+            </button>
+
+            <button class="scheme-button" data-name-en="Crop Insurance" data-name-te="పంట బీమా"
+                    onclick="showScheme('insurance', this)">
+                🛡️ <span class="scheme-name">Crop Insurance</span>
+            </button>
+
+            <button class="scheme-button" data-name-en="Kisan Credit Card" data-name-te="కిసాన్ క్రెడిట్ కార్డ్"
+                    onclick="showScheme('kcc', this)">
+                💳 <span class="scheme-name">Kisan Credit Card</span>
+            </button>
+        </div>
+
+        <p class="no-results" id="noResults" hidden>No schemes found.</p>
+    </section>
+
+    <section class="main-card information-card">
+        <div class="section-title">
+            <div class="section-icon">📋</div>
+            <div>
+                <h2 id="informationHeading">About & Information</h2>
+                <p id="informationDescription">Scheme details</p>
+            </div>
+        </div>
+
+        <div class="scheme-image">
+            <img id="schemeImage" src="images/farming.png" alt="Farmer working in a paddy field">
+        </div>
+
+        <div id="schemeDetails" class="scheme-details">
+            <div class="empty-message">
+                <span>🌾</span>
+                <h3 id="selectSchemeTitle">Select a scheme</h3>
+                <p id="selectSchemeText">Select a government scheme from the left to view details.</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="main-card" id="farmerDetails">
+        <div class="section-title">
+            <div class="section-icon">👨‍🌾</div>
+            <div>
+                <h2 id="farmerHeading">Farmer Details</h2>
+                <p id="farmerDescription">Your information</p>
+            </div>
+        </div>
+
+        <div class="farmer-image">
+            <img src="images/maa.png" alt="Farmer planting rice in a green field">
+        </div>
+
+        <div class="farmer-information">
+            <div class="detail">
+                <span id="nameLabel">👤 Name</span>
+                <strong id="farmerName">Demo Farmer</strong>
+            </div>
+
+            <div class="detail">
+                <span id="aadhaarLabel">🪪 Aadhaar</span>
+                <strong class="verified" id="aadhaarStatus">✓ Verified</strong>
+            </div>
+
+            <div class="detail">
+                <span id="landLabel">🌾 Land</span>
+                <strong class="verified" id="landStatus">✓ Verified</strong>
+            </div>
+
+            <div class="detail">
+                <span id="bankLabel">🏦 Bank</span>
+                <strong class="verified" id="bankStatus">✓ Linked</strong>
+            </div>
+
+            <div class="detail">
+                <span id="stateLabel">📍 State</span>
+                <strong id="stateValue">Andhra Pradesh</strong>
+            </div>
+        </div>
+
+        <button class="profile-button" onclick="editFarmer()" id="editButton">
+            ✏️ Edit Details
+        </button>
+    </section>
+</main>
+
+<section class="farm-gallery" id="farm-gallery" aria-labelledby="galleryHeading">
+    <div class="gallery-heading">
+        <div>
+            <p class="gallery-eyebrow" id="galleryEyebrow">FARM LIFE, IN FOCUS</p>
+            <h2 id="galleryHeading">Stories from the field</h2>
+            <p class="gallery-description" id="galleryDescription">
+                Explore farming, crops and rural life through the photos in this project.
+            </p>
+        </div>
+        <aside class="gallery-location" aria-label="Photo location">
+            <span class="gallery-location-icon" aria-hidden="true">📍</span>
+            <span>
+                <strong id="galleryLocation">Andhra Pradesh</strong>
+                <small id="galleryLocationNote">District and village details are not embedded in these photos.</small>
+            </span>
+        </aside>
+    </div>
+
+    <div class="gallery-toolbar">
+        <p id="galleryFilterLabel">Browse by farm area</p>
+        <div class="gallery-filters" role="group" aria-label="Filter farm photos">
+            <button class="gallery-filter active" type="button" data-gallery-filter="all" onclick="filterFarmGallery('all', this)" aria-pressed="true" id="galleryFilterAll">All photos</button>
+            <button class="gallery-filter" type="button" data-gallery-filter="fields" onclick="filterFarmGallery('fields', this)" aria-pressed="false" id="galleryFilterFields">Fields &amp; crops</button>
+            <button class="gallery-filter" type="button" data-gallery-filter="farmers" onclick="filterFarmGallery('farmers', this)" aria-pressed="false" id="galleryFilterFarmers">Farmers at work</button>
+            <button class="gallery-filter" type="button" data-gallery-filter="livestock" onclick="filterFarmGallery('livestock', this)" aria-pressed="false" id="galleryFilterLivestock">Livestock &amp; farm life</button>
+            <button class="gallery-filter" type="button" data-gallery-filter="produce" onclick="filterFarmGallery('produce', this)" aria-pressed="false" id="galleryFilterProduce">Produce &amp; markets</button>
+        </div>
+        <p class="gallery-count" id="galleryCount" role="status" aria-live="polite">9 photos</p>
+    </div>
+
+    <div class="gallery-grid" id="galleryGrid">
+        <article class="gallery-card" data-gallery-card data-area="farmers">
+            <img src="images/hero.jpeg" alt="Farmers planting rice together in a wet paddy field" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Farmers at work" data-gallery-te="పనిలో రైతులు">Farmers at work</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="A community planting season" data-gallery-te="సామూహిక నాట్ల సీజన్">A community planting season</h3>
+                <p data-gallery-en="Farmers work together to plant young rice across the field." data-gallery-te="పొలంలో వరి నాట్లు వేయడానికి రైతులు కలిసి పనిచేస్తున్నారు.">Farmers work together to plant young rice across the field.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="fields">
+            <img src="images/farming.png" alt="Green paddy fields set among misty hills" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Fields & crops" data-gallery-te="పొలాలు మరియు పంటలు">Fields &amp; crops</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="Green paddy fields" data-gallery-te="పచ్చని వరి పొలాలు">Green paddy fields</h3>
+                <p data-gallery-en="Rice paddies stretch across a green, hilly landscape." data-gallery-te="పచ్చని కొండల మధ్య విస్తరించిన వరి పొలాలు.">Rice paddies stretch across a green, hilly landscape.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="fields">
+            <img src="images/field.png" alt="A farmer preparing a field for cultivation" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Fields & crops" data-gallery-te="పొలాలు మరియు పంటలు">Fields &amp; crops</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="Preparing the field" data-gallery-te="పొలాన్ని సిద్ధం చేయడం">Preparing the field</h3>
+                <p data-gallery-en="Traditional field preparation before the next crop is planted." data-gallery-te="తదుపరి పంట నాటడానికి ముందు సంప్రదాయ పద్ధతిలో పొలాన్ని సిద్ధం చేయడం.">Traditional field preparation before the next crop is planted.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="farmers">
+            <img src="images/maa.png" alt="A farmer caring for young rice plants in a field" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Farmers at work" data-gallery-te="పనిలో రైతులు">Farmers at work</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="Care for every crop" data-gallery-te="ప్రతి పంటకు శ్రద్ధ">Care for every crop</h3>
+                <p data-gallery-en="A farmer tends young plants growing in a rice field." data-gallery-te="వరి పొలంలో పెరుగుతున్న మొక్కలను చూసుకుంటున్న రైతు.">A farmer tends young plants growing in a rice field.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="livestock">
+            <img src="images/farm.png" alt="Cattle grazing on a small green farm below the hills" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Livestock & farm life" data-gallery-te="పశుసంపద మరియు వ్యవసాయ జీవితం">Livestock &amp; farm life</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="Livestock on the farm" data-gallery-te="వ్యవసాయ క్షేత్రంలోని పశువులు">Livestock on the farm</h3>
+                <p data-gallery-en="Cattle graze beside cultivated land in the countryside." data-gallery-te="గ్రామీణ ప్రాంతంలో సాగు భూమి పక్కన మేస్తున్న పశువులు.">Cattle graze beside cultivated land in the countryside.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="produce">
+            <img src="images/image.png" alt="Fresh fruit and leafy vegetables arranged for sale" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Produce & markets" data-gallery-te="పంట ఉత్పత్తులు మరియు మార్కెట్లు">Produce &amp; markets</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="Fresh from local growers" data-gallery-te="స్థానిక రైతుల తాజా ఉత్పత్తులు">Fresh from local growers</h3>
+                <p data-gallery-en="A colorful selection of fresh produce at a local market." data-gallery-te="స్థానిక మార్కెట్‌లో తాజా పండ్లు మరియు కూరగాయలు.">A colorful selection of fresh produce at a local market.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="fields">
+            <img src="images/panta.png" alt="A farmer standing in a ripe golden paddy field" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Fields & crops" data-gallery-te="పొలాలు మరియు పంటలు">Fields &amp; crops</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="A golden harvest" data-gallery-te="బంగారు పంట">A golden harvest</h3>
+                <p data-gallery-en="A mature crop ready for harvest in the hills." data-gallery-te="కొండ ప్రాంతంలోని కోతకు సిద్ధంగా ఉన్న పంట.">A mature crop ready for harvest in the hills.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="farmers">
+            <img src="images/per.jpeg" alt="A farmer standing among ripe crops with hills in the distance" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Farmers at work" data-gallery-te="పనిలో రైతులు">Farmers at work</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="The farmer's harvest" data-gallery-te="రైతు పంట">The farmer's harvest</h3>
+                <p data-gallery-en="A farmer checks a ripe crop before the harvest." data-gallery-te="కోతకు ముందు పండిన పంటను పరిశీలిస్తున్న రైతు.">A farmer checks a ripe crop before the harvest.</p>
+            </div>
+        </article>
+
+        <article class="gallery-card" data-gallery-card data-area="livestock">
+            <img src="images/cow.jpeg" alt="A farmer caring for a cow in a rural cowshed" loading="lazy" decoding="async">
+            <div class="gallery-card-body">
+                <div class="gallery-tags"><span class="gallery-area" data-gallery-en="Livestock & farm life" data-gallery-te="పశుసంపద మరియు వ్యవసాయ జీవితం">Livestock &amp; farm life</span><span class="gallery-place" data-gallery-en="Andhra Pradesh" data-gallery-te="ఆంధ్రప్రదేశ్">Andhra Pradesh</span></div>
+                <h3 data-gallery-en="Everyday animal care" data-gallery-te="రోజువారీ పశు సంరక్షణ">Everyday animal care</h3>
+                <p data-gallery-en="Looking after livestock is part of everyday farm life." data-gallery-te="పశువులను చూసుకోవడం రోజువారీ వ్యవసాయ జీవితంలో భాగం.">Looking after livestock is part of everyday farm life.</p>
+            </div>
+        </article>
+    </div>
+</section>
+
+<section class="wide-card">
+    <div class="wide-title">
+        <div class="wide-icon">🏦</div>
+        <div>
+            <h2 id="bankHeading">My Bank Account</h2>
+            <p id="bankDescription">Check your benefit payment</p>
+        </div>
+    </div>
+
+    <div class="demo-note" id="demoNote">
+        Demo data only — do not enter real banking passwords, PINs or OTPs.
+    </div>
+
+    <div class="bank-content">
+        <div class="bank-details">
+            <p><strong id="bankNameLabel">Bank:</strong> ABC Bank</p>
+            <p><strong id="accountLabel">Account:</strong> XXXX XXXX 4521</p>
+            <p><strong id="statusLabel">Status:</strong> <span class="verified" id="accountStatus">✓ Verified</span></p>
+        </div>
+
+        <button class="payment-button" onclick="checkPayment()" id="paymentButton">
+            Check Benefit Payment
+        </button>
+    </div>
+
+    <div id="paymentResult" role="status" aria-live="polite"></div>
+</section>
+
+<section class="wide-card">
+    <div class="wide-title">
+        <div class="wide-icon">📄</div>
+        <div>
+            <h2 id="documentsHeading">Required Documents</h2>
+            <p id="documentsDescription">Keep your documents ready</p>
+        </div>
+    </div>
+
+    <div class="documents-grid">
+        <label class="document">
+            <input type="checkbox" onchange="checkDocuments()">
+            <span id="aadhaarDocument">🪪 Aadhaar Card</span>
+        </label>
+
+        <label class="document">
+            <input type="checkbox" onchange="checkDocuments()">
+            <span id="bankDocument">🏦 Bank Passbook</span>
+        </label>
+
+        <label class="document">
+            <input type="checkbox" onchange="checkDocuments()">
+            <span id="landDocument">🌾 Land Document</span>
+        </label>
+
+        <label class="document">
+            <input type="checkbox" onchange="checkDocuments()">
+            <span id="photoDocument">📷 Passport Photo</span>
+        </label>
+    </div>
+
+    <div id="documentStatus" class="document-status">
+        Documents checked: 0 / 4
+    </div>
+</section>
+
+<section class="government-section">
+    <div class="government-image">
+        <img src="images/field.png" alt="Green agricultural fields in Andhra Pradesh">
+    </div>
+
+    <div class="government-content">
+        <span id="governmentLabel">GOVERNMENT SERVICES</span>
+        <h2 id="governmentHeading">Andhra Pradesh Government</h2>
+        <p id="governmentDescription">
+            Connecting farmers with digital information, agricultural services and government schemes.
+        </p>
+    </div>
+</section>
+
+<footer>
+    <div>
+        <h3 id="footerTitle">🌾 Farmer Benefit Portal</h3>
+        <p id="footerDescription">
+            Supporting farmers through accessible digital information and services.
+        </p>
+    </div>
+
+    <div>
+        <p id="footerProject">Farmer Benefit Portal</p>
+        <p id="footerDemo">Educational Project Demo</p>
+    </div>
+</footer>
+
+<script src="rythu.js"></script>
+</body>
+</html>
